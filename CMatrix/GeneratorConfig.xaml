@@ -1,0 +1,108 @@
+﻿<UserControl x:Class="CMatrix.GeneratorConfig"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:generators="clr-namespace:CMatrix.Generator"
+             xmlns:local="clr-namespace:CMatrix"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="blackGen" DataType="local:GeneratorBlack">
+            <generators:GeneratorBlack/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="textGen" DataType="local:GeneratorText">
+            <generators:GeneratorText/>
+        </DataTemplate>
+
+        
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Header="Generator Options:">
+
+            <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" Padding="0,0,5,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+
+                    <Label Grid.Column="0" Grid.Row="0" Content="Type:" VerticalAlignment="Center" />
+                    <ComboBox Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" Margin="0,2"/>
+
+                    <Label Grid.Column="0" Grid.Row="1" Content="Mix-Mode:" VerticalAlignment="Center" />
+                    <ComboBox Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Margin="0,2"/>
+
+                    <Label Grid.Column="0" Grid.Row="2" Content="Speed:" VerticalAlignment="Center" />
+                    <Grid Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Margin="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="34"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Slider x:Name="SpeedSlider" Grid.Column="0" VerticalAlignment="Center" Minimum="0" Maximum="100" Value="100" Interval="1"/>
+                        <Label Content="{Binding ElementName=SpeedSlider, Path=Value}" Grid.Column="1" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    </Grid>
+
+                    <Label Grid.Column="0" Grid.Row="3" Content="Level:" VerticalAlignment="Center" />
+                    <Grid Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" Margin="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="34"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Slider x:Name="LevelSlider" Grid.Column="0" VerticalAlignment="Center" Minimum="0" Maximum="100" Value="100" Interval="1"/>
+                        <Label Content="{Binding ElementName=LevelSlider, Path=Value}" Grid.Column="1" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+
+        </GroupBox>
+
+
+        <TabControl  ItemsSource="{Binding TabItems}" Grid.Column="2" TabStripPlacement="Top" Background="{DynamicResource Gray4}" BorderBrush="{DynamicResource Gray7}" SelectedIndex="0">
+
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding Header}"/>
+                    </Grid>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+
+
+
+
+            <TabControl.ContentTemplateSelector>
+                <local:GeneratorTemplateSelector
+                BlackGenTemplate="{StaticResource blackGen}"
+                TextGenTemplate="{StaticResource textGen}" />
+
+            </TabControl.ContentTemplateSelector>
+        </TabControl>
+        
+        
+    </Grid>
+</UserControl>

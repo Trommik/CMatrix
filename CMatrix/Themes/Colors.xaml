@@ -1,0 +1,48 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <!--<SolidColorBrush x:Key="textCol" Color="#FFD5D5D5"/>
+    --><!--Color: darkWhite--><!-- 
+    <SolidColorBrush x:Key="textColHighlight" Color="White"/>
+    --><!--Color: white--><!--
+
+
+    <SolidColorBrush x:Key="selected" Color="#FF2C2C2C"/>
+    --><!--Color: brownGrey --><!--
+    <SolidColorBrush x:Key="icons" Color="#FF929292"/>
+    --><!--Color: lightGrey --><!--
+    <SolidColorBrush x:Key="window" Color="#FF1A1A1D"/>
+    --><!--Color: grey --><!--
+    <SolidColorBrush x:Key="panel" Color="#FF101011"/>
+    --><!--Color: darkGrey --><!--
+    <SolidColorBrush x:Key="popup" Color="#FF040405"/>
+    --><!--Color: black -->
+
+    <!--Color: blue -->
+    <SolidColorBrush x:Key="highlight1" Color="#FF007ACC"/>
+    <!--Color: green -->
+    <SolidColorBrush x:Key="highlight2" Color="#FF5EEE00"/>
+    <!--Color: pink -->
+    <SolidColorBrush x:Key="highlight3" Color="#FFF3003D"/>
+    <!--Color: orange -->
+    <SolidColorBrush x:Key="highlight4" Color="#FFFF8E00"/>
+
+    
+    <!--BaseDark Theme Colors-->
+    <SolidColorBrush x:Key="WhiteColor" Color="#FF252525" />
+
+    <SolidColorBrush x:Key="NormalForegroundColor" Color="#FF7e7e7e" />
+    <SolidColorBrush x:Key="HoverForegroundColor" Color="#FF000000" />
+
+    <SolidColorBrush x:Key="Gray4" Color="#FF181818" />
+    <SolidColorBrush x:Key="Gray5" Color="#FF7e7e7e" />
+    <SolidColorBrush x:Key="Gray7" Color="#FF2f2f2f" />
+    <SolidColorBrush x:Key="Gray8" Color="#FF454545" />
+    <SolidColorBrush x:Key="Gray14" Color="#222222" />
+
+
+    <SolidColorBrush x:Key="GrayNormal" Color="#FF7D7D7D" />
+    <SolidColorBrush x:Key="GrayHover" Color="#FFAAAAAA" />
+
+</ResourceDictionary>
