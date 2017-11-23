@@ -89,7 +89,44 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="0" Orientation="Horizontal">
-                            <TextBlock Text="{Binding Header}"/>
+
+                            <Button Padding="0" Width="16" Height="16">
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Rectangle Margin="2">
+                                            <Rectangle.Style>
+                                                <Style TargetType="{x:Type Rectangle}">
+                                                    <Setter Property="Fill" Value="{DynamicResource GrayNormal}" />
+
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=TemplatedParent}}" Value="True">
+                                                            <Setter Property="Fill" Value="{DynamicResource highlight2}"/>
+                                                        </DataTrigger>
+
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding IsPressed, RelativeSource={RelativeSource Mode=TemplatedParent}}" Value="True" />
+                                                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=TemplatedParent}}" Value="True" />
+                                                            </MultiDataTrigger.Conditions>
+                                                            <MultiDataTrigger.Setters>
+                                                                <Setter Property="Fill" Value="{DynamicResource highlight3}"/>
+                                                            </MultiDataTrigger.Setters>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Rectangle.Style>
+                                            
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Visual="{StaticResource appbar_delete}" Stretch="Fill"  />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+                            
+
+                            <TextBlock Text="{Binding Header}" VerticalAlignment="Center" Margin="3,0,0,0"/>
                         </StackPanel>
                         
                     </Grid>

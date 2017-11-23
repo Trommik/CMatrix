@@ -18,6 +18,9 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
 
+                <!--MahApps.Metro Icons-->
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
+
 
                 <!--My Colors-->
                 <ResourceDictionary Source="Themes/Colors.xaml"/>
@@ -25,6 +28,7 @@
             </ResourceDictionary.MergedDictionaries>
             
             
+
             <!--Custom style for the MetroGroupBox-->
             <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource MetroGroupBox}">
                 <Setter Property="Margin" Value="0" />

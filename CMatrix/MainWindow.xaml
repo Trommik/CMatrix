@@ -132,7 +132,21 @@
 
             <!--Right TabControl-->
             <TabControl Grid.Column="2" Grid.RowSpan="3" Margin="0,5,0,2" TabStripPlacement="Bottom" Background="{DynamicResource Gray4}" BorderBrush="{DynamicResource Gray7}">
-                <TabItem Header="TabItem1" controls:ControlsHelper.HeaderFontSize="14"/>
+                <TabItem Header="TabItem1" controls:ControlsHelper.HeaderFontSize="14">
+                    <StackPanel Orientation="Vertical">
+                        <Button Margin="5" Content="Disconnect from Server"/>
+                        <Button controls:ButtonHelper.CornerRadius="0" BorderBrush="{x:Null}" Margin="5">
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Fill="Black" Width="16" Height="16" Margin="2">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Visual="{StaticResource appbar_axis_yx}" Stretch="Fill"  />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                <TextBlock VerticalAlignment="Center" Margin="3,0,0,0">Disconnect from Server</TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </TabItem>
 
                 <TabItem Header="TabItem2" controls:ControlsHelper.HeaderFontSize="14">
                     <Slider SmallChange="0.5" Maximum="5"/>
