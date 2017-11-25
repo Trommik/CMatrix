@@ -7,6 +7,20 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
 
+
+
+
+//public enum Directions : int
+//{
+//    Left_Right = 0,
+//    Bottom_Top = 1,
+//    BottomLeft_TopRight = 2,
+//    TopLeft_BottomRight = 3,
+//}
+
+
+
+
 namespace CMatrix
 {
     /// <summary>
@@ -25,13 +39,6 @@ namespace CMatrix
         public int size;
     }
 
-    public enum Directions : int
-    {
-        Left_Right = 0,
-        Bottom_Top = 1,
-        BottomLeft_TopRight = 2,
-        TopLeft_BottomRight = 3,
-    }
 
     public interface IGenerator
     {
@@ -46,8 +53,6 @@ namespace CMatrix
 
         void GenerateImage(ref Color[] image);
     }
-
-
 
 
     public struct GeneratorInfo
@@ -103,8 +108,6 @@ namespace CMatrix
         }
 
 
-
-
         public static List<GeneratorInfo> generatorInfos = new List<GeneratorInfo>
         {
             new GeneratorInfo(GeneratorTypes.BLACK, "Black") ,
@@ -129,32 +132,4 @@ namespace CMatrix
         };
      
     }
-
-
-
-    /*      
-    public abstract class AbstractGenerator
-    {
-        protected int speed;
-        protected int sizeX, sizeY;
-        protected int size;
-
-        public AbstractGenerator(int sizeX, int sizeY, int speed)
-        {
-            this.speed = speed;
-
-            this.sizeX = sizeX;
-            this.sizeY = sizeY;
-
-            size = sizeX * sizeY;
-        }
-
-        public int GetSize()
-        {
-            return size;
-        }
-        
-        public abstract void GenerateImage(ref Color[] image);
-
-    }*/
 }

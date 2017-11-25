@@ -20,14 +20,27 @@ namespace CMatrix.Generator
     /// </summary>
     public partial class GeneratorText : UserControl, IGenerator
     {
+        public MatrixSizeInfo MatrixInfo { get; set; }
+        public GeneratorInfo GenInfo { get; set; }
+
+        private int sizeX;
+        private int sizeY;
+
+        public int Speed { get; set; }
+
+        // For xaml
         public GeneratorText()
         {
             InitializeComponent();
         }
 
-        public MatrixSizeInfo MatrixInfo { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public GeneratorInfo GenInfo { get; set; }
-        public int Speed { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public GeneratorText(MatrixSizeInfo info)
+        {
+            InitializeComponent();
+
+            sizeX = info.width;
+            sizeY = info.height;
+        }
 
         public void GenerateImage(ref Color[] image)
         {

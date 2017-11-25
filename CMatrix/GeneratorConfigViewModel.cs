@@ -11,79 +11,6 @@ using System.Windows.Controls;
 
 namespace CMatrix
 {
-
-
-
-    /*
-    class Model : INotifyPropertyChanged
-    {
-        private ObservableCollection<MyTabItem> _tabitems = new ObservableCollection<MyTabItem>();
-
-        public Model()
-        {
-            MyTabItem myItem = new MyTabItem
-            {
-                Header = "test1",
-                Content = "test1"
-            };
-            TabItems.Add(myItem);
-
-            MyTabItem myItem2 = new MyTabItem
-            {
-                Header = "test2",
-                Content = "test2"
-            };
-            TabItems.Add(myItem2);
-        }
-
-        public ObservableCollection<MyTabItem> TabItems
-        {
-            get
-            {
-                return _tabitems;
-            }
-            set
-            {
-                _tabitems = value;
-                OnPropertyChanged("TabItems");
-            }
-        }
-
-        public bool Execute()
-        {
-            MyTabItem myItem = new MyTabItem();
-            myItem.Header = "test";
-            myItem.Content = "test";
-            TabItems.Add(myItem);
-
-            return true;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }*/
-
-    public class GeneratorTabItem
-    {
-        public string Header { get; set; }
-        private UserControl content;
-        public UserControl Content { get { return content; } }
-
-        private IGenerator generator;
-        public IGenerator Generator { get { return generator; } set { generator = value; content = (UserControl)Generator; } }
-    }
-
-
-
     public class GeneratorConfigViewModel : INotifyPropertyChanged
     {
         #region INotifyPropertyChanged Implemantation
@@ -151,51 +78,45 @@ namespace CMatrix
                 OnPropertyChanged("Level");
             }
         }
-        #endregion
+        
 
-        private ObservableCollection<GeneratorTabItem> _tabitems = new ObservableCollection<GeneratorTabItem>();
-
+        private ObservableCollection<GeneratorTabItem> tabitems = new ObservableCollection<GeneratorTabItem>();
         public ObservableCollection<GeneratorTabItem> TabItems
         {
             get
             {
-                return _tabitems;
+                return tabitems;
             }
             set
             {
-                _tabitems = value;
+                tabitems = value;
                 OnPropertyChanged("TabItems");
             }
         }
 
-
-        //private int selectedTabIndex;
-        //public int SelectedTabIndex
-        //{
-        //    get { return selectedTabIndex; }
-        //    set
-        //    {
-        //        if (value != selectedTabIndex)
-        //        {
-        //            selectedTabIndex = value;
-        //            OnPropertyChanged("SelectedTabIndex");
-        //        }
-        //    }
-        //}
+        private int selectedTabIndex;
+        public int SelectedTabIndex
+        {
+            get { return selectedTabIndex; }
+            set
+            {
+                if (value != selectedTabIndex)
+                {
+                    selectedTabIndex = value;
+                    OnPropertyChanged("SelectedTabIndex");
+                    Console.WriteLine("CHANGE!!!!");
+                }
+            }
+        }
+        #endregion
 
 
         public GeneratorConfigViewModel()
         {
-            /*  GeneratorBlack myItem = new GeneratorBlack();
-              myItem.Header = "test";
-              myItem.Content = "test";
-              TabItems.Add(myItem);
+            SelectedTabIndex = 0;
 
-              tabCollection.Add(new GeneratorBlack(){Speed = 85});
-              tabCollection.Add(new GeneratorBlack());
-              SelectedTabIndex = 0;
-              */
 
+            //DEBUG
             GeneratorTabItem myItem = new GeneratorTabItem
             {
                 Header = "Black",
@@ -216,6 +137,17 @@ namespace CMatrix
                 }
             };
             TabItems.Add(myItem2);
+            //END DEBUG
         }
+    }
+
+    public class GeneratorTabItem
+    {
+        public string Header { get; set; }
+        private UserControl content;
+        public UserControl Content { get { return content; } }
+
+        private IGenerator generator;
+        public IGenerator Generator { get { return generator; } set { generator = value; content = (UserControl)Generator; } }
     }
 }

@@ -79,7 +79,7 @@
         </GroupBox>
 
 
-        <TabControl  ItemsSource="{Binding TabItems}" Grid.Column="2" TabStripPlacement="Top" Background="{DynamicResource Gray4}" BorderBrush="{DynamicResource Gray7}" SelectedIndex="0">
+        <TabControl  ItemsSource="{Binding TabItems}" Grid.Column="2" TabStripPlacement="Top" Background="{DynamicResource Gray4}" BorderBrush="{DynamicResource Gray7}" SelectedIndex="{Binding SelectedTabIndex}">
 
             <TabControl.ItemTemplate>
                 <DataTemplate>
