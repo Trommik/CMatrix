@@ -128,6 +128,9 @@ namespace CMatrix
             };
             TabItems.Add(myItem);
 
+            // Add event handler
+            myItem.Delete_Clicked += Delete_Tab;
+
             GeneratorTabItem myItem2 = new GeneratorTabItem
             {
                 Header = "Text",
@@ -137,13 +140,33 @@ namespace CMatrix
                 }
             };
             TabItems.Add(myItem2);
+
+            // Add event handler
+            myItem2.Delete_Clicked += Delete_Tab;
+
+
             //END DEBUG
+        }
+
+        private void Delete_Tab(object sender, GeneratorTabItemEventArgs e)
+        {
+            for(int i = TabItems.Count - 1; i > -1; i--)
+            {
+                var tab = TabItems[i];
+
+                if (tab.ID == e.ID)
+                {
+                    TabItems.Remove(tab);
+                }
+            }
         }
 
     }
 
     public class GeneratorTabItem
     {
+        public Guid ID { get; private set; }
+
         public string Header { get; set; }
         private UserControl content;
         public UserControl Content { get { return content; } }
@@ -152,9 +175,30 @@ namespace CMatrix
         public IGenerator Generator { get { return generator; } set { generator = value; content = (UserControl)Generator; } }
 
 
+        public GeneratorTabItem()
+        {
+            ID = Guid.NewGuid();
+        }
+
+
+        /// <summary>
+        /// Event handler for deleting a TabItem when the cross in the Header is clicked.
+        /// </summary>
+        public event EventHandler<GeneratorTabItemEventArgs> Delete_Clicked;
         public void DeleteButtonClicked()
         {
-            Console.WriteLine("delete " + Header);
+            // Fire Delete_Clicked Event with the unique ID of the TabItem
+            Delete_Clicked?.Invoke(this, new GeneratorTabItemEventArgs(ID));
+        }
+    }
+
+    public class GeneratorTabItemEventArgs : EventArgs
+    {
+        public Guid ID { get; private set; }
+
+        public GeneratorTabItemEventArgs(Guid tabID)
+        {
+            ID = tabID;
         }
     }
 }
