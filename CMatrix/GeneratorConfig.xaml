@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
              xmlns:generators="clr-namespace:CMatrix.Generator"
              xmlns:local="clr-namespace:CMatrix"
              mc:Ignorable="d" 
@@ -21,12 +23,15 @@
         
     </UserControl.Resources>
 
+
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="5"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
+        
 
         <GroupBox Header="Generator Options:">
 
@@ -90,7 +95,16 @@
 
                         <StackPanel Grid.Column="0" Orientation="Horizontal">
 
+                            <TextBlock Text="{Binding Header}" VerticalAlignment="Center" Margin="0,0,3,0"/>
+
                             <Button Padding="0" Width="16" Height="16">
+
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <ei:CallMethodAction TargetObject="{Binding}" MethodName="DeleteButtonClicked"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                
                                 <Button.Template>
                                     <ControlTemplate>
                                         <Rectangle Margin="2">
@@ -100,7 +114,7 @@
 
                                                     <Style.Triggers>
                                                         <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=TemplatedParent}}" Value="True">
-                                                            <Setter Property="Fill" Value="{DynamicResource highlight2}"/>
+                                                            <Setter Property="Fill" Value="{StaticResource GrayHover}"/>
                                                         </DataTrigger>
 
                                                         <MultiDataTrigger>
@@ -115,18 +129,15 @@
                                                     </Style.Triggers>
                                                 </Style>
                                             </Rectangle.Style>
-                                            
+
                                             <Rectangle.OpacityMask>
-                                                <VisualBrush Visual="{StaticResource appbar_delete}" Stretch="Fill"  />
+                                                <VisualBrush Visual="{StaticResource appbar_close}" Stretch="Fill"  />
                                             </Rectangle.OpacityMask>
                                         </Rectangle>
                                     </ControlTemplate>
                                 </Button.Template>
                             </Button>
 
-                            
-
-                            <TextBlock Text="{Binding Header}" VerticalAlignment="Center" Margin="3,0,0,0"/>
                         </StackPanel>
                         
                     </Grid>

@@ -139,6 +139,7 @@ namespace CMatrix
             TabItems.Add(myItem2);
             //END DEBUG
         }
+
     }
 
     public class GeneratorTabItem
@@ -149,5 +150,11 @@ namespace CMatrix
 
         private IGenerator generator;
         public IGenerator Generator { get { return generator; } set { generator = value; content = (UserControl)Generator; } }
+
+
+        public void DeleteButtonClicked()
+        {
+            Console.WriteLine("delete " + Header);
+        }
     }
 }
