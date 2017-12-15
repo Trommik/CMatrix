@@ -104,7 +104,6 @@ namespace CMatrix
                 {
                     selectedTabIndex = value;
                     OnPropertyChanged("SelectedTabIndex");
-                    Console.WriteLine("CHANGE!!!!");
                 }
             }
         }
