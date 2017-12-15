@@ -47,33 +47,11 @@ namespace CMatrix
         MatrixSizeInfo MatrixInfo { get; set; }
 
         // For what?
-        GeneratorInfo GenInfo { get; set; }
+        Generator.Info GenInfo { get; set; }
 
         // Not sure maybe not here!
         int Speed { get; set; }
 
         void GenerateImage(ref Color[] image);
-    }
-
-
-    public struct GeneratorInfo
-    {
-        public GeneratorTypes GenType { get; }
-        public string Text { get; }
-        public string ToolTipText { get; }
-
-        public GeneratorInfo(GeneratorTypes type, string text = null, string toolTipText = "")
-        {
-            // Get the name of the GeneratorType
-            GenType = type;
-
-            Text = text;
-
-            // If there is no specific text use the generator Type name
-            if (Text == null)
-                Text = GenType.ToString("f"); ;
-
-            ToolTipText = toolTipText;
-        }
     }
 }

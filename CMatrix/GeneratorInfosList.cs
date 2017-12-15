@@ -13,35 +13,62 @@ namespace CMatrix
     /// </summary>
     public class Generator
     {
-        private ObservableCollection<GeneratorInfo> infosList = new ObservableCollection<GeneratorInfo>();
+        private ObservableCollection<Info> infosList = new ObservableCollection<Info>();
 
-        private static Generator _infosList = new Generator();
-        public static ObservableCollection<GeneratorInfo> GetInfoList
+        private static Generator staticGeneratorInstance = new Generator();
+        public static ObservableCollection<Info> GetInfoList
         {
-            get { return _infosList.infosList; }
+            get { return staticGeneratorInstance.infosList; }
         }
 
         private Generator()
         {
-            infosList.Add(new GeneratorInfo(GeneratorTypes.BLACK, "Black"));
-            infosList.Add(new GeneratorInfo(GeneratorTypes.ANIMATED_GIF, "Animated GIF"));
-            infosList.Add(new GeneratorInfo(GeneratorTypes.CAPTURE, "Capture"));
-            infosList.Add(new GeneratorInfo(GeneratorTypes.EXPANDING_OBJECTS, "Expanding Objects"));
-            infosList.Add(new GeneratorInfo(GeneratorTypes.FADE_AND_SCROLL, "Fade and Scroll"));
-            infosList.Add(new GeneratorInfo(GeneratorTypes.FADING_PIXELS, "Fading Pixels"));
-            infosList.Add(new GeneratorInfo(GeneratorTypes.FRACTAL, "Fractal"));
-            infosList.Add(new GeneratorInfo(GeneratorTypes.FALLING_OBJECTS, "Falling Objects"));
-            infosList.Add(new GeneratorInfo(GeneratorTypes.FIRE, "Fire"));
-            infosList.Add(new GeneratorInfo(GeneratorTypes.GRID, "Grid"));
-            infosList.Add(new GeneratorInfo(GeneratorTypes.KNIGHT_RIDER, "Knight Rider"));
-            infosList.Add(new GeneratorInfo(GeneratorTypes.META_BALLS, "Meta Balls"));
-            infosList.Add(new GeneratorInfo(GeneratorTypes.OBJECTS_3D, "Objects 3D"));
-            infosList.Add(new GeneratorInfo(GeneratorTypes.PLASMA, "Plasma"));
-            infosList.Add(new GeneratorInfo(GeneratorTypes.RANDOM_PIXEL, "Random Pixels"));
-            infosList.Add(new GeneratorInfo(GeneratorTypes.TEXT, "Text"));
-            infosList.Add(new GeneratorInfo(GeneratorTypes.SIMPLE_SPECTRUM, "Simple Spectrum"));
-            infosList.Add(new GeneratorInfo(GeneratorTypes.STROBO, "Strobo"));
-            infosList.Add(new GeneratorInfo(GeneratorTypes.WAVE, "Wave"));
+            infosList.Add(new Info(GeneratorTypes.BLACK, "Black"));
+            infosList.Add(new Info(GeneratorTypes.ANIMATED_GIF, "Animated GIF"));
+            infosList.Add(new Info(GeneratorTypes.CAPTURE, "Capture"));
+            infosList.Add(new Info(GeneratorTypes.EXPANDING_OBJECTS, "Expanding Objects"));
+            infosList.Add(new Info(GeneratorTypes.FADE_AND_SCROLL, "Fade and Scroll"));
+            infosList.Add(new Info(GeneratorTypes.FADING_PIXELS, "Fading Pixels"));
+            infosList.Add(new Info(GeneratorTypes.FRACTAL, "Fractal"));
+            infosList.Add(new Info(GeneratorTypes.FALLING_OBJECTS, "Falling Objects"));
+            infosList.Add(new Info(GeneratorTypes.FIRE, "Fire"));
+            infosList.Add(new Info(GeneratorTypes.GRID, "Grid"));
+            infosList.Add(new Info(GeneratorTypes.KNIGHT_RIDER, "Knight Rider"));
+            infosList.Add(new Info(GeneratorTypes.META_BALLS, "Meta Balls"));
+            infosList.Add(new Info(GeneratorTypes.OBJECTS_3D, "Objects 3D"));
+            infosList.Add(new Info(GeneratorTypes.PLASMA, "Plasma"));
+            infosList.Add(new Info(GeneratorTypes.RANDOM_PIXEL, "Random Pixels"));
+            infosList.Add(new Info(GeneratorTypes.TEXT, "Text"));
+            infosList.Add(new Info(GeneratorTypes.SIMPLE_SPECTRUM, "Simple Spectrum"));
+            infosList.Add(new Info(GeneratorTypes.STROBO, "Strobo"));
+            infosList.Add(new Info(GeneratorTypes.WAVE, "Wave"));
+        }
+
+
+        public struct Info
+        {
+            public GeneratorTypes GenType { get; }
+            public string Text { get; }
+            public string ToolTipText { get; }
+
+            public Info(GeneratorTypes type, string text = null, string toolTipText = null)
+            {
+                // Get the name of the GeneratorType
+                GenType = type;
+
+                Text = text;
+
+                ToolTipText = toolTipText;
+
+
+                // If there is no specific text use the generator Type name
+                if (Text == null)
+                    Text = GenType.ToString("f"); ;
+
+                if (toolTipText == null)
+                    ToolTipText = Text;
+
+            }
         }
     };
 
@@ -76,7 +103,7 @@ namespace CMatrix
     /// </summary>
     public static class GeneratorTypesExtensionMethods
     {
-        public static GeneratorInfo GetInfo(this GeneratorTypes type)
+        public static Generator.Info GetInfo(this GeneratorTypes type)
         {
             // Try to get the info object
             return Generator.GetInfoList.Single(x => x.GenType == type);

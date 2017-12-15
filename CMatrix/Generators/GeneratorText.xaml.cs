@@ -21,7 +21,7 @@ namespace CMatrix.Generators
     public partial class GeneratorText : UserControl, IGenerator
     {
         public MatrixSizeInfo MatrixInfo { get; set; }
-        public GeneratorInfo GenInfo { get; set; }
+        public Generator.Info GenInfo { get; set; }
 
         private int sizeX;
         private int sizeY;

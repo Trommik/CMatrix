@@ -24,7 +24,7 @@ namespace CMatrix
         #endregion
 
         #region Propertys
-        public ObservableCollection<GeneratorInfo> InfoList
+        public ObservableCollection<Generator.Info> InfoList
         {
             get
             {
