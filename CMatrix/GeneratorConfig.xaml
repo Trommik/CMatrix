@@ -48,15 +48,26 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-
+                    <!--Row with GENERATOR TYPE Combobox-->
                     <Label Grid.Column="0" Grid.Row="0" Content="Type:" VerticalAlignment="Center" />
-                    <ComboBox Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" Margin="0,2"/>
+                    <ComboBox Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" Margin="0,2" ItemsSource="{Binding AllGeneratorTypes}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Text}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
 
+                    <!--Row with MIX MODE Combobox-->
                     <Label Grid.Column="0" Grid.Row="1" Content="Mix-Mode:" VerticalAlignment="Center" />
                     <ComboBox Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Margin="0,2"/>
 
+                    <!--Row with SPEED Slider and Labels--> 
                     <Label Grid.Column="0" Grid.Row="2" Content="Speed:" VerticalAlignment="Center" />
                     <Grid Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Margin="0">
                         <Grid.ColumnDefinitions>
@@ -64,10 +75,11 @@
                             <ColumnDefinition Width="34"/>
                         </Grid.ColumnDefinitions>
 
-                        <Slider x:Name="SpeedSlider" Grid.Column="0" VerticalAlignment="Center" Minimum="0" Maximum="100" Value="100" Interval="1"/>
-                        <Label Content="{Binding ElementName=SpeedSlider, Path=Value}" Grid.Column="1" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                        <Slider x:Name="SpeedSlider" Grid.Column="0" VerticalAlignment="Center" Value="{Binding Speed}" Minimum="0" Maximum="100" Interval="1"/>
+                        <Label Content="{Binding ElementName=SpeedSlider, Path=Value}" Grid.Column="1" VerticalAlignment="Center" Margin="3,0,0,0"/>
                     </Grid>
-
+                    
+                    <!--Row with LEVEL Slider and Labels-->
                     <Label Grid.Column="0" Grid.Row="3" Content="Level:" VerticalAlignment="Center" />
                     <Grid Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" Margin="0">
                         <Grid.ColumnDefinitions>
@@ -75,24 +87,24 @@
                             <ColumnDefinition Width="34"/>
                         </Grid.ColumnDefinitions>
 
-                        <Slider x:Name="LevelSlider" Grid.Column="0" VerticalAlignment="Center" Minimum="0" Maximum="100" Value="100" Interval="1"/>
-                        <Label Content="{Binding ElementName=LevelSlider, Path=Value}" Grid.Column="1" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                        <Slider x:Name="LevelSlider" Grid.Column="0" VerticalAlignment="Center" Value="{Binding Level}"  Minimum="0" Maximum="100" Interval="1"/>
+                        <Label Content="{Binding ElementName=LevelSlider, Path=Value}" Grid.Column="1" VerticalAlignment="Center" Margin="3,0,0,0"/>
                     </Grid>
+                    
+                    <!--Row with new tab Button-->
+                    <Button Margin="5,7,5,2" Content="Add to Scene" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="4" controls:ControlsHelper.ContentCharacterCasing="Normal" FontSize="12" FontWeight="Normal" />
                 </Grid>
             </ScrollViewer>
 
         </GroupBox>
 
-
+        <!--TabControl which holds all custom settings for each Generator-->
         <TabControl  ItemsSource="{Binding TabItems}" Grid.Column="2" TabStripPlacement="Top" Background="{DynamicResource Gray4}" BorderBrush="{DynamicResource Gray7}" SelectedIndex="{Binding SelectedTabIndex}">
 
+            <!--Tab Control Item Style-->
             <TabControl.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
                         <!--Header Stack Panel-->
                         <StackPanel Grid.Column="0" Orientation="Horizontal">
 
@@ -163,7 +175,7 @@
 
 
 
-
+            <!--Tab Control "Content"--> 
             <TabControl.ContentTemplateSelector>
                 <!--Create a new Content selector instance which selects the content for this tab control from the 2 static resources Black and Text GenTemplate-->
                 <local:GeneratorTemplateSelector

@@ -23,8 +23,17 @@ namespace CMatrix
         #endregion
 
         #region Propertys
-        public int type;
-        public int Type
+
+        public IEnumerable<GeneratorInfo> AllGeneratorTypes
+        {
+            get
+            {
+                return GeneratorTypesExtensionMethods.generatorInfos;
+            }
+        }
+
+        private GeneratorTypes type;
+        public GeneratorTypes Type
         {
             get
             {
@@ -32,7 +41,7 @@ namespace CMatrix
             }
             set
             {
-                Type = value;
+                type = value;
                 OnPropertyChanged("Type");
             }
         }
@@ -51,7 +60,7 @@ namespace CMatrix
             }
         }
 
-        private int speed;
+        private int speed = 100;
         public int Speed
         {
             get
@@ -65,7 +74,7 @@ namespace CMatrix
             }
         }
 
-        private int level;
+        private int level = 100;
         public int Level
         {
             get
