@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CMatrix.Generator
+namespace CMatrix.Generators
 {
     /// <summary>
     /// Interaktionslogik für GeneratorBlack.xaml

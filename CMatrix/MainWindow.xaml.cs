@@ -24,6 +24,7 @@ namespace CMatrix
     {
         public MainWindow()
         {
+            this.DataContext = new MainWindowViewModel();
             InitializeComponent();
         }
     }

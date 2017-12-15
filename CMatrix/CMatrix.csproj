@@ -82,6 +82,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GeneratorConfigViewModel.cs" />
+    <Compile Include="GeneratorInfosList.cs" />
     <Compile Include="Generators\GeneratorBlack.xaml.cs" />
     <Compile Include="Generators\GeneratorText.xaml.cs" />
     <Compile Include="Generators\IGenerator.cs" />
@@ -107,6 +108,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

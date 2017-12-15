@@ -1,4 +1,4 @@
-﻿using CMatrix.Generator;
+﻿using CMatrix.Generators;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,6 +11,7 @@ using System.Windows.Controls;
 
 namespace CMatrix
 {
+
     public class GeneratorConfigViewModel : INotifyPropertyChanged
     {
         #region INotifyPropertyChanged Implemantation
@@ -23,14 +24,14 @@ namespace CMatrix
         #endregion
 
         #region Propertys
-
-        public IEnumerable<GeneratorInfo> AllGeneratorTypes
+        public ObservableCollection<GeneratorInfo> InfoList
         {
             get
             {
-                return GeneratorTypesExtensionMethods.generatorInfos;
+                return Generator.GetInfoList;
             }
         }
+
 
         private GeneratorTypes type;
         public GeneratorTypes Type
@@ -117,6 +118,11 @@ namespace CMatrix
             }
         }
         #endregion
+
+
+
+
+
 
 
         public GeneratorConfigViewModel()

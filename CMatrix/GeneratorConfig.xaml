@@ -6,7 +6,7 @@
              xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
-             xmlns:generators="clr-namespace:CMatrix.Generator"
+             xmlns:generators="clr-namespace:CMatrix.Generators"
              xmlns:local="clr-namespace:CMatrix"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
@@ -53,7 +53,7 @@
 
                     <!--Row with GENERATOR TYPE Combobox-->
                     <Label Grid.Column="0" Grid.Row="0" Content="Type:" VerticalAlignment="Center" />
-                    <ComboBox Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" Margin="0,2" ItemsSource="{Binding AllGeneratorTypes}">
+                    <ComboBox Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" Margin="0,2" ItemsSource="{Binding InfoList}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
