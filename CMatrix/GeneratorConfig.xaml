@@ -93,30 +93,41 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
+                        <!--Header Stack Panel-->
                         <StackPanel Grid.Column="0" Orientation="Horizontal">
 
                             <TextBlock Text="{Binding Header}" VerticalAlignment="Center" Margin="0,0,3,0"/>
 
-                            <Button Padding="0" Width="16" Height="16">
+                            <Button Padding="0">
 
+                                <!--Call the DeleteButtonClicked Method on the button click like adding an event handler--> 
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">
                                         <ei:CallMethodAction TargetObject="{Binding}" MethodName="DeleteButtonClicked"/>
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                                 
+                                
                                 <Button.Template>
                                     <ControlTemplate>
-                                        <Rectangle Margin="2">
+                                        
+                                        <!--Close Icon Rectangle Styling-->
+                                        <Rectangle Margin="2" Width="12" Height="12">
+                                            
+                                            <!--Set the Icon Color to the default-->
                                             <Rectangle.Style>
                                                 <Style TargetType="{x:Type Rectangle}">
-                                                    <Setter Property="Fill" Value="{DynamicResource GrayNormal}" />
-
+                                                    <Setter Property="Fill" Value="{DynamicResource GrayNormal}"/>
+                                                    
+                                                    <!--Set the Icon Color after some triggers-->
                                                     <Style.Triggers>
+                                                        
+                                                        <!--Mouse Over Trigger-->
                                                         <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Mode=TemplatedParent}}" Value="True">
                                                             <Setter Property="Fill" Value="{StaticResource GrayHover}"/>
                                                         </DataTrigger>
 
+                                                        <!--Mouse Over and Click Trigger-->
                                                         <MultiDataTrigger>
                                                             <MultiDataTrigger.Conditions>
                                                                 <Condition Binding="{Binding IsPressed, RelativeSource={RelativeSource Mode=TemplatedParent}}" Value="True" />
@@ -126,18 +137,24 @@
                                                                 <Setter Property="Fill" Value="{DynamicResource highlight3}"/>
                                                             </MultiDataTrigger.Setters>
                                                         </MultiDataTrigger>
+                                                        
                                                     </Style.Triggers>
                                                 </Style>
                                             </Rectangle.Style>
 
+                                            
+                                            <!--Set the Icon in the Rectangle as Visual brush-->
                                             <Rectangle.OpacityMask>
-                                                <VisualBrush Visual="{StaticResource appbar_close}" Stretch="Fill"  />
+                                                <VisualBrush Visual="{StaticResource appbar_close}" />
                                             </Rectangle.OpacityMask>
+                                            
+                                            
                                         </Rectangle>
                                     </ControlTemplate>
                                 </Button.Template>
                             </Button>
 
+                            
                         </StackPanel>
                         
                     </Grid>
@@ -148,6 +165,7 @@
 
 
             <TabControl.ContentTemplateSelector>
+                <!--Create a new Content selector instance which selects the content for this tab control from the 2 static resources Black and Text GenTemplate-->
                 <local:GeneratorTemplateSelector
                 BlackGenTemplate="{StaticResource blackGen}"
                 TextGenTemplate="{StaticResource textGen}" />
