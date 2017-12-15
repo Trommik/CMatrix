@@ -148,7 +148,7 @@ namespace CMatrix
             //END DEBUG
         }
 
-        private void Delete_Tab(object sender, GeneratorTabItemEventArgs e)
+        private void Delete_Tab(object sender, GeneratorTabItemDeletedEventArgs e)
         {
             for(int i = TabItems.Count - 1; i > -1; i--)
             {
@@ -168,11 +168,9 @@ namespace CMatrix
         public Guid ID { get; private set; }
 
         public string Header { get; set; }
-        private UserControl content;
-        public UserControl Content { get { return content; } }
 
         private IGenerator generator;
-        public IGenerator Generator { get { return generator; } set { generator = value; content = (UserControl)Generator; } }
+        public IGenerator Generator { get { return generator; } set { generator = value; } }
 
 
         public GeneratorTabItem()
@@ -184,19 +182,19 @@ namespace CMatrix
         /// <summary>
         /// Event handler for deleting a TabItem when the cross in the Header is clicked.
         /// </summary>
-        public event EventHandler<GeneratorTabItemEventArgs> Delete_Clicked;
+        public event EventHandler<GeneratorTabItemDeletedEventArgs> Delete_Clicked;
         public void DeleteButtonClicked()
         {
             // Fire Delete_Clicked Event with the unique ID of the TabItem
-            Delete_Clicked?.Invoke(this, new GeneratorTabItemEventArgs(ID));
+            Delete_Clicked?.Invoke(this, new GeneratorTabItemDeletedEventArgs(ID));
         }
     }
 
-    public class GeneratorTabItemEventArgs : EventArgs
+    public class GeneratorTabItemDeletedEventArgs : EventArgs
     {
         public Guid ID { get; private set; }
 
-        public GeneratorTabItemEventArgs(Guid tabID)
+        public GeneratorTabItemDeletedEventArgs(Guid tabID)
         {
             ID = tabID;
         }
